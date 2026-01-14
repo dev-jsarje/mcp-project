@@ -19,10 +19,13 @@ docs = {
     description="Read the contents of a document and return it as string."
 )
 def read_document(
-    doc_id: str = Field(description="Id of the doc")
+    doc_id: str = Field(description="Id of the document to read")
 ):
+    if doc_id not in docs:
+        raise ValueError(f"Doc with id {doc_id} not found")
+    return docs[doc_id]
 # TODO: Write a tool to edit a doc
-# TODO: Write a resource to return all doc id's
+# TODO: Write a resource to return all doc 
 # TODO: Write a resource to return the contents of a particular doc
 # TODO: Write a prompt to rewrite a doc in markdown format
 # TODO: Write a prompt to summarize a doc
